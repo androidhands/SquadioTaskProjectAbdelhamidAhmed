@@ -1,6 +1,7 @@
-import 'dart:_http';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/core/errors/exceptions.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/data/models/error_response_model.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/data/models/popular_people_model.dart';
@@ -28,7 +29,7 @@ class PopularPeopleRemoteDataSourceImpl implements PopularPeopleRemoteDataSource
 
 
       final databaseResponse = await client
-          .post(Uri.parse(baseUrl), body: params);
+          .get(Uri.parse(baseUrl).replace(queryParameters: params));
       if (databaseResponse.statusCode == 200) {
         final responseJson = databaseResponse.body;
         Map<String, dynamic> map = jsonDecode(responseJson);
@@ -38,6 +39,7 @@ class PopularPeopleRemoteDataSourceImpl implements PopularPeopleRemoteDataSource
         List<PopularPeopleEntity> posts = List<PopularPeopleEntity>.from(
             parsed.map((model) => PopularPeopleModel.fromJson(model)));
 
+        debugPrint('result '+posts.length.toString());
         return posts;
       } else if (databaseResponse.statusCode == 401 ||
           databaseResponse.statusCode == 404 ||
@@ -55,8 +57,6 @@ class PopularPeopleRemoteDataSourceImpl implements PopularPeopleRemoteDataSource
       throw ServerException(e.message);
     } on HttpException catch (e) {
       throw ServerException(e.message);
-    } finally {
-      client.close();
     }
   }
 

@@ -10,22 +10,22 @@ part of 'app_database.dart';
 class PopularPeopleTableData extends DataClass
     implements Insertable<PopularPeopleTableData> {
   final int id;
-  final String name;
-  final int gender;
-  final bool adult;
-  final dynamic knownFor;
-  final String knownForDepartment;
-  final double popularity;
-  final String profilePath;
+  final String? name;
+  final int? gender;
+  final bool? adult;
+  final dynamic? knownFor;
+  final String? knownForDepartment;
+  final double? popularity;
+  final String? profilePath;
   PopularPeopleTableData(
       {required this.id,
-      required this.name,
-      required this.gender,
-      required this.adult,
-      required this.knownFor,
-      required this.knownForDepartment,
-      required this.popularity,
-      required this.profilePath});
+      this.name,
+      this.gender,
+      this.adult,
+      this.knownFor,
+      this.knownForDepartment,
+      this.popularity,
+      this.profilePath});
   factory PopularPeopleTableData.fromData(Map<String, dynamic> data,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -33,49 +33,71 @@ class PopularPeopleTableData extends DataClass
       id: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       name: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
+          .mapFromDatabaseResponse(data['${effectivePrefix}name']),
       gender: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}gender'])!,
+          .mapFromDatabaseResponse(data['${effectivePrefix}gender']),
       adult: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}adult'])!,
+          .mapFromDatabaseResponse(data['${effectivePrefix}adult']),
       knownFor: $PopularPeopleTableTable.$converter0.mapToDart(
           const StringType()
-              .mapFromDatabaseResponse(data['${effectivePrefix}known_for']))!,
+              .mapFromDatabaseResponse(data['${effectivePrefix}known_for'])),
       knownForDepartment: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}known_for_department'])!,
+          data['${effectivePrefix}known_for_department']),
       popularity: const RealType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}popularity'])!,
+          .mapFromDatabaseResponse(data['${effectivePrefix}popularity']),
       profilePath: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}profile_path'])!,
+          .mapFromDatabaseResponse(data['${effectivePrefix}profile_path']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    map['name'] = Variable<String>(name);
-    map['gender'] = Variable<int>(gender);
-    map['adult'] = Variable<bool>(adult);
-    {
-      final converter = $PopularPeopleTableTable.$converter0;
-      map['known_for'] = Variable<String>(converter.mapToSql(knownFor)!);
+    if (!nullToAbsent || name != null) {
+      map['name'] = Variable<String?>(name);
     }
-    map['known_for_department'] = Variable<String>(knownForDepartment);
-    map['popularity'] = Variable<double>(popularity);
-    map['profile_path'] = Variable<String>(profilePath);
+    if (!nullToAbsent || gender != null) {
+      map['gender'] = Variable<int?>(gender);
+    }
+    if (!nullToAbsent || adult != null) {
+      map['adult'] = Variable<bool?>(adult);
+    }
+    if (!nullToAbsent || knownFor != null) {
+      final converter = $PopularPeopleTableTable.$converter0;
+      map['known_for'] = Variable<String?>(converter.mapToSql(knownFor));
+    }
+    if (!nullToAbsent || knownForDepartment != null) {
+      map['known_for_department'] = Variable<String?>(knownForDepartment);
+    }
+    if (!nullToAbsent || popularity != null) {
+      map['popularity'] = Variable<double?>(popularity);
+    }
+    if (!nullToAbsent || profilePath != null) {
+      map['profile_path'] = Variable<String?>(profilePath);
+    }
     return map;
   }
 
   PopularPeopleTableCompanion toCompanion(bool nullToAbsent) {
     return PopularPeopleTableCompanion(
       id: Value(id),
-      name: Value(name),
-      gender: Value(gender),
-      adult: Value(adult),
-      knownFor: Value(knownFor),
-      knownForDepartment: Value(knownForDepartment),
-      popularity: Value(popularity),
-      profilePath: Value(profilePath),
+      name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      gender:
+          gender == null && nullToAbsent ? const Value.absent() : Value(gender),
+      adult:
+          adult == null && nullToAbsent ? const Value.absent() : Value(adult),
+      knownFor: knownFor == null && nullToAbsent
+          ? const Value.absent()
+          : Value(knownFor),
+      knownForDepartment: knownForDepartment == null && nullToAbsent
+          ? const Value.absent()
+          : Value(knownForDepartment),
+      popularity: popularity == null && nullToAbsent
+          ? const Value.absent()
+          : Value(popularity),
+      profilePath: profilePath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(profilePath),
     );
   }
 
@@ -84,14 +106,14 @@ class PopularPeopleTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return PopularPeopleTableData(
       id: serializer.fromJson<int>(json['id']),
-      name: serializer.fromJson<String>(json['name']),
-      gender: serializer.fromJson<int>(json['gender']),
-      adult: serializer.fromJson<bool>(json['adult']),
-      knownFor: serializer.fromJson<dynamic>(json['knownFor']),
+      name: serializer.fromJson<String?>(json['name']),
+      gender: serializer.fromJson<int?>(json['gender']),
+      adult: serializer.fromJson<bool?>(json['adult']),
+      knownFor: serializer.fromJson<dynamic?>(json['knownFor']),
       knownForDepartment:
-          serializer.fromJson<String>(json['knownForDepartment']),
-      popularity: serializer.fromJson<double>(json['popularity']),
-      profilePath: serializer.fromJson<String>(json['profilePath']),
+          serializer.fromJson<String?>(json['knownForDepartment']),
+      popularity: serializer.fromJson<double?>(json['popularity']),
+      profilePath: serializer.fromJson<String?>(json['profilePath']),
     );
   }
   @override
@@ -99,13 +121,13 @@ class PopularPeopleTableData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'name': serializer.toJson<String>(name),
-      'gender': serializer.toJson<int>(gender),
-      'adult': serializer.toJson<bool>(adult),
-      'knownFor': serializer.toJson<dynamic>(knownFor),
-      'knownForDepartment': serializer.toJson<String>(knownForDepartment),
-      'popularity': serializer.toJson<double>(popularity),
-      'profilePath': serializer.toJson<String>(profilePath),
+      'name': serializer.toJson<String?>(name),
+      'gender': serializer.toJson<int?>(gender),
+      'adult': serializer.toJson<bool?>(adult),
+      'knownFor': serializer.toJson<dynamic?>(knownFor),
+      'knownForDepartment': serializer.toJson<String?>(knownForDepartment),
+      'popularity': serializer.toJson<double?>(popularity),
+      'profilePath': serializer.toJson<String?>(profilePath),
     };
   }
 
@@ -163,13 +185,13 @@ class PopularPeopleTableData extends DataClass
 class PopularPeopleTableCompanion
     extends UpdateCompanion<PopularPeopleTableData> {
   final Value<int> id;
-  final Value<String> name;
-  final Value<int> gender;
-  final Value<bool> adult;
-  final Value<dynamic> knownFor;
-  final Value<String> knownForDepartment;
-  final Value<double> popularity;
-  final Value<String> profilePath;
+  final Value<String?> name;
+  final Value<int?> gender;
+  final Value<bool?> adult;
+  final Value<dynamic?> knownFor;
+  final Value<String?> knownForDepartment;
+  final Value<double?> popularity;
+  final Value<String?> profilePath;
   const PopularPeopleTableCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -182,29 +204,23 @@ class PopularPeopleTableCompanion
   });
   PopularPeopleTableCompanion.insert({
     this.id = const Value.absent(),
-    required String name,
-    required int gender,
-    required bool adult,
-    required dynamic knownFor,
-    required String knownForDepartment,
-    required double popularity,
-    required String profilePath,
-  })  : name = Value(name),
-        gender = Value(gender),
-        adult = Value(adult),
-        knownFor = Value(knownFor),
-        knownForDepartment = Value(knownForDepartment),
-        popularity = Value(popularity),
-        profilePath = Value(profilePath);
+    this.name = const Value.absent(),
+    this.gender = const Value.absent(),
+    this.adult = const Value.absent(),
+    this.knownFor = const Value.absent(),
+    this.knownForDepartment = const Value.absent(),
+    this.popularity = const Value.absent(),
+    this.profilePath = const Value.absent(),
+  });
   static Insertable<PopularPeopleTableData> custom({
     Expression<int>? id,
-    Expression<String>? name,
-    Expression<int>? gender,
-    Expression<bool>? adult,
-    Expression<dynamic>? knownFor,
-    Expression<String>? knownForDepartment,
-    Expression<double>? popularity,
-    Expression<String>? profilePath,
+    Expression<String?>? name,
+    Expression<int?>? gender,
+    Expression<bool?>? adult,
+    Expression<dynamic?>? knownFor,
+    Expression<String?>? knownForDepartment,
+    Expression<double?>? popularity,
+    Expression<String?>? profilePath,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -221,13 +237,13 @@ class PopularPeopleTableCompanion
 
   PopularPeopleTableCompanion copyWith(
       {Value<int>? id,
-      Value<String>? name,
-      Value<int>? gender,
-      Value<bool>? adult,
-      Value<dynamic>? knownFor,
-      Value<String>? knownForDepartment,
-      Value<double>? popularity,
-      Value<String>? profilePath}) {
+      Value<String?>? name,
+      Value<int?>? gender,
+      Value<bool?>? adult,
+      Value<dynamic?>? knownFor,
+      Value<String?>? knownForDepartment,
+      Value<double?>? popularity,
+      Value<String?>? profilePath}) {
     return PopularPeopleTableCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -247,26 +263,26 @@ class PopularPeopleTableCompanion
       map['id'] = Variable<int>(id.value);
     }
     if (name.present) {
-      map['name'] = Variable<String>(name.value);
+      map['name'] = Variable<String?>(name.value);
     }
     if (gender.present) {
-      map['gender'] = Variable<int>(gender.value);
+      map['gender'] = Variable<int?>(gender.value);
     }
     if (adult.present) {
-      map['adult'] = Variable<bool>(adult.value);
+      map['adult'] = Variable<bool?>(adult.value);
     }
     if (knownFor.present) {
       final converter = $PopularPeopleTableTable.$converter0;
-      map['known_for'] = Variable<String>(converter.mapToSql(knownFor.value)!);
+      map['known_for'] = Variable<String?>(converter.mapToSql(knownFor.value));
     }
     if (knownForDepartment.present) {
-      map['known_for_department'] = Variable<String>(knownForDepartment.value);
+      map['known_for_department'] = Variable<String?>(knownForDepartment.value);
     }
     if (popularity.present) {
-      map['popularity'] = Variable<double>(popularity.value);
+      map['popularity'] = Variable<double?>(popularity.value);
     }
     if (profilePath.present) {
-      map['profile_path'] = Variable<String>(profilePath.value);
+      map['profile_path'] = Variable<String?>(profilePath.value);
     }
     return map;
   }
@@ -303,43 +319,43 @@ class $PopularPeopleTableTable extends PopularPeopleTable
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String?> name = GeneratedColumn<String?>(
-      'name', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
+      'name', aliasedName, true,
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _genderMeta = const VerificationMeta('gender');
   @override
   late final GeneratedColumn<int?> gender = GeneratedColumn<int?>(
-      'gender', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+      'gender', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _adultMeta = const VerificationMeta('adult');
   @override
   late final GeneratedColumn<bool?> adult = GeneratedColumn<bool?>(
-      'adult', aliasedName, false,
+      'adult', aliasedName, true,
       type: const BoolType(),
-      requiredDuringInsert: true,
+      requiredDuringInsert: false,
       defaultConstraints: 'CHECK (adult IN (0, 1))');
   final VerificationMeta _knownForMeta = const VerificationMeta('knownFor');
   @override
   late final GeneratedColumnWithTypeConverter<dynamic, String?> knownFor =
-      GeneratedColumn<String?>('known_for', aliasedName, false,
-              type: const StringType(), requiredDuringInsert: true)
+      GeneratedColumn<String?>('known_for', aliasedName, true,
+              type: const StringType(), requiredDuringInsert: false)
           .withConverter<dynamic>($PopularPeopleTableTable.$converter0);
   final VerificationMeta _knownForDepartmentMeta =
       const VerificationMeta('knownForDepartment');
   @override
   late final GeneratedColumn<String?> knownForDepartment =
-      GeneratedColumn<String?>('known_for_department', aliasedName, false,
-          type: const StringType(), requiredDuringInsert: true);
+      GeneratedColumn<String?>('known_for_department', aliasedName, true,
+          type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _popularityMeta = const VerificationMeta('popularity');
   @override
   late final GeneratedColumn<double?> popularity = GeneratedColumn<double?>(
-      'popularity', aliasedName, false,
-      type: const RealType(), requiredDuringInsert: true);
+      'popularity', aliasedName, true,
+      type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _profilePathMeta =
       const VerificationMeta('profilePath');
   @override
   late final GeneratedColumn<String?> profilePath = GeneratedColumn<String?>(
-      'profile_path', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
+      'profile_path', aliasedName, true,
+      type: const StringType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -367,20 +383,14 @@ class $PopularPeopleTableTable extends PopularPeopleTable
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
     }
     if (data.containsKey('gender')) {
       context.handle(_genderMeta,
           gender.isAcceptableOrUnknown(data['gender']!, _genderMeta));
-    } else if (isInserting) {
-      context.missing(_genderMeta);
     }
     if (data.containsKey('adult')) {
       context.handle(
           _adultMeta, adult.isAcceptableOrUnknown(data['adult']!, _adultMeta));
-    } else if (isInserting) {
-      context.missing(_adultMeta);
     }
     context.handle(_knownForMeta, const VerificationResult.success());
     if (data.containsKey('known_for_department')) {
@@ -388,24 +398,18 @@ class $PopularPeopleTableTable extends PopularPeopleTable
           _knownForDepartmentMeta,
           knownForDepartment.isAcceptableOrUnknown(
               data['known_for_department']!, _knownForDepartmentMeta));
-    } else if (isInserting) {
-      context.missing(_knownForDepartmentMeta);
     }
     if (data.containsKey('popularity')) {
       context.handle(
           _popularityMeta,
           popularity.isAcceptableOrUnknown(
               data['popularity']!, _popularityMeta));
-    } else if (isInserting) {
-      context.missing(_popularityMeta);
     }
     if (data.containsKey('profile_path')) {
       context.handle(
           _profilePathMeta,
           profilePath.isAcceptableOrUnknown(
               data['profile_path']!, _profilePathMeta));
-    } else if (isInserting) {
-      context.missing(_profilePathMeta);
     }
     return context;
   }

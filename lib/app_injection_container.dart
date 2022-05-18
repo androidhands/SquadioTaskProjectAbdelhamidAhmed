@@ -27,7 +27,7 @@ void init(){
   //repositories
 
   sl.registerLazySingleton<PopularPeopleRepository>(() => PopularPeopleRepositoryImpl(popularPeopleRemoteDataSource: sl()
-      , popularPeopleLocalDataSource: sl(), networkInfo: sl()));
+      ,peopleLocalDataSource:sl(), platformNetworkInfo: sl()));
 
   //data sources
 

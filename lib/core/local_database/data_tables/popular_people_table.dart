@@ -6,13 +6,13 @@ import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/do
 
 class PopularPeopleTable extends Table{
   IntColumn get id=> integer().autoIncrement()();
-  TextColumn get name => text()();
-  IntColumn get gender => integer()();
-  BoolColumn get adult => boolean()();
-  TextColumn get knownFor => text().map(const CustomConverter())();
-  TextColumn get knownForDepartment => text()();
-  RealColumn get popularity => real()();
-  TextColumn get profilePath => text()();
+  TextColumn get name => text().nullable()();
+  IntColumn get gender => integer().nullable()();
+  BoolColumn get adult => boolean().nullable()();
+  TextColumn get knownFor => text().map(const CustomConverter()).nullable()();
+  TextColumn get knownForDepartment => text().nullable()();
+  RealColumn get popularity => real().nullable()();
+  TextColumn get profilePath => text().nullable()();
 }
 
 class CustomConverter extends TypeConverter<dynamic, String> {
