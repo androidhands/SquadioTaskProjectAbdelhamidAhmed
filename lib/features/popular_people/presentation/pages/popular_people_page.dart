@@ -17,7 +17,7 @@ class PopularPeopleListPage extends StatefulWidget {
 }
 
 class _PopularPeopleListPageState extends State<PopularPeopleListPage> {
-  int _counter = 1;
+  int _counter = 3;
 
 /*
   void _incrementCounter() {

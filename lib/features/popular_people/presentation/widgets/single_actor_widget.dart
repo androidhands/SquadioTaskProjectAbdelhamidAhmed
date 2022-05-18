@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/core/utils/app_constants.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/popular_people_entity.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/routing/routing.gr.dart';
 
 class SingleActorWidget extends StatelessWidget{
   final PopularPeopleEntity? popularPeopleEntity;
@@ -38,10 +40,35 @@ class SingleActorWidget extends StatelessWidget{
              return Image.asset('assets/squadio.jpg',height: 300,);
            }*/
           const SizedBox(height: 5,),
-          Text(popularPeopleEntity!.name!,style: GoogleFonts.notoKufiArabic(fontSize: 16),textAlign: TextAlign.start),
-          const SizedBox(height: 3,),
-          Text('Popularity ${popularPeopleEntity!.popularity!.toStringAsFixed(1)}'
-            ,style: GoogleFonts.notoKufiArabic(fontSize: 16,),textAlign: TextAlign.start,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                flex: 1,
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(popularPeopleEntity!.name!,style: GoogleFonts.reemKufi(color: Colors.white,fontSize: 16
+                  ,fontWeight: FontWeight.bold),textAlign: TextAlign.start),
+                  const SizedBox(height: 3,),
+                  Text('Popularity ${popularPeopleEntity!.popularity!.toStringAsFixed(1)}'
+                    ,style:GoogleFonts.reemKufi(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),textAlign: TextAlign.start,),
+                ],
+              )),
+              Flexible(
+                  child: ClipOval(
+                    child: Material(
+                      color: Colors.deepPurple,
+                      child: IconButton(
+                onPressed: (){
+                  context.router.push(PopularPeopleDetailsRoute(popularPeopleEntity: popularPeopleEntity!));
+                },
+                icon: Icon(Icons.navigate_next,color: Colors.white),
+              ),
+                    ),
+                  ))
+            ],
+          )
         ],
       ),
     );
