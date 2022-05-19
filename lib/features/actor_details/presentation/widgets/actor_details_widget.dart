@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/domain/entities/actor_details_entity.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/widgets/actor_image_widget.dart';
-import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/widgets/actor_images_gride_widget.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/widgets/actor_images_grid_widget.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/widgets/single_detail_item.dart';
 
 class ActorDetailsWidget extends StatelessWidget{

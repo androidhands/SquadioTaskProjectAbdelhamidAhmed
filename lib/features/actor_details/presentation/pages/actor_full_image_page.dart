@@ -77,7 +77,7 @@ class _ActorFullImagePageState extends State<ActorFullImagePage> {
           ),
            Align(alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: IconButton(
                 onPressed: (){
                   _saveNetworkImage('${AppConstants.imageUrl}${widget.actorProfilesEntity!.filePath!}');
