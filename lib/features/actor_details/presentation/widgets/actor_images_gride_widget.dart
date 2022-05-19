@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/app_injection_container.dart';
@@ -8,6 +9,7 @@ import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/dom
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/bloc/actor_details_bloc.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/bloc/actor_details_bloc_events.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/presentation/bloc/actor_details_bloc_state.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/routing/routing.gr.dart';
 
 class ActorImagesWidget extends StatelessWidget{
   final ActorDetailsEntity? actorDetailsEntity;
@@ -37,7 +39,7 @@ class ActorImagesWidget extends StatelessWidget{
                         crossAxisCount: 3,crossAxisSpacing: 3,mainAxisSpacing: 3),
                   children: actorProfiles.map((e) =>  GestureDetector(
                     onTap: (){
-
+                      context.router.push(ActorFullImageRoute(actorProfilesEntity: e,actorDetailsEntity: actorDetailsEntity!,));
                     },
                     child: FadeInImage.assetNetwork(
                       imageErrorBuilder: (context,object,stackTrace){

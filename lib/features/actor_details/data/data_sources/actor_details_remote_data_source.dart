@@ -13,6 +13,7 @@ import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/dom
 abstract class ActorDetailsRemoteDataSource{
   Future<ActorDetailsEntity> getActorDetails(String id,String language);
   Future<ActorImagesEntity> getActorImages(String id);
+
 }
 
 class ActorDetailsRemoteDataSourceImpl implements ActorDetailsRemoteDataSource{
@@ -95,5 +96,7 @@ class ActorDetailsRemoteDataSourceImpl implements ActorDetailsRemoteDataSource{
       throw ServerException(e.message);
     }
   }
+
+
 
 }
