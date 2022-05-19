@@ -1,19 +1,19 @@
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/actor_details_entity.dart';
 import 'package:meta/meta.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/domain/entities/actor_details_entity.dart';
 
 class ActorDetailsModel extends ActorDetailsEntity {
   const ActorDetailsModel({@required bool? adult,
-    @required List<String>? alsoKnownAs,
+    @required List<dynamic>? alsoKnownAs,
     @required String? biography,
     @required String? birthday,
     @required int? gender,
     @required String? homepage,
     @required int? id,
-    @required int? imdbId,
+    @required String? imdbId,
     @required String? knownForDepartment,
     @required String? name,
     @required String? placeOfBirth,
-    @required String? popularity,
+    @required double? popularity,
     @required String? profilePath})
       : super(
       adult,

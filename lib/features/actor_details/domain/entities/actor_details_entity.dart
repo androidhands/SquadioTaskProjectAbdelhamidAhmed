@@ -2,17 +2,17 @@ import 'package:equatable/equatable.dart';
 
 class ActorDetailsEntity extends Equatable {
   final bool? adult;
-  final List<String>? alsoKnownAs;
+  final List<dynamic>? alsoKnownAs;
   final String? biography;
   final String? birthday;
   final int? gender;
   final String? homepage;
   final int? id;
-  final int? imdbId;
+  final String? imdbId;
   final String? knownForDepartment;
   final String? name;
   final String? placeOfBirth;
-  final String? popularity;
+  final double? popularity;
   final String? profilePath;
 
   const ActorDetailsEntity(

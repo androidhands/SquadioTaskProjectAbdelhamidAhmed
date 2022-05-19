@@ -1,5 +1,5 @@
 import 'package:squadio_task_project_abdelhamid_hamed/core/errors/failure.dart';
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/usecases/GetAllPopularPeopleUseCase.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/usecases/get_all_popular_people_use_case.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/presentation/bloc/popular_people_bloc_events.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/presentation/bloc/popular_people_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

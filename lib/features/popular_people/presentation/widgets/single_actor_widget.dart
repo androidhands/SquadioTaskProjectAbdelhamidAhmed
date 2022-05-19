@@ -61,9 +61,9 @@ class SingleActorWidget extends StatelessWidget{
                       color: Colors.deepPurple,
                       child: IconButton(
                 onPressed: (){
-                  context.router.push(PopularPeopleDetailsRoute(popularPeopleEntity: popularPeopleEntity!));
+                  context.router.push(ActorDetailsRoute(popularPeopleEntity: popularPeopleEntity!));
                 },
-                icon: Icon(Icons.navigate_next,color: Colors.white),
+                icon: const Icon(Icons.navigate_next,color: Colors.white),
               ),
                     ),
                   ))

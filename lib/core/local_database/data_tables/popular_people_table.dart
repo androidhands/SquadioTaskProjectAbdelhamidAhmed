@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/data/models/known_for_model.dart';
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/known_for_entity.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/data/models/known_for_model.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/domain/entities/known_for_entity.dart';
 
 class PopularPeopleTable extends Table{
   IntColumn get id=> integer().autoIncrement()();

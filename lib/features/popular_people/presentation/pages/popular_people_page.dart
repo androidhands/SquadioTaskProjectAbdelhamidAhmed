@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/core/utils/app_constants.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/presentation/bloc/popular_people_bloc.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/presentation/bloc/popular_people_bloc_events.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/presentation/bloc/popular_people_bloc_state.dart';
@@ -17,7 +18,7 @@ class PopularPeopleListPage extends StatefulWidget {
 }
 
 class _PopularPeopleListPageState extends State<PopularPeopleListPage> {
-  int _counter = 3;
+  final int _counter = 3;
 
 /*
   void _incrementCounter() {
@@ -33,15 +34,15 @@ class _PopularPeopleListPageState extends State<PopularPeopleListPage> {
       create: (_) => sl<PopularPeopleBloc>(),
       child: Builder(
           builder: (context) {
-            BlocProvider.of<PopularPeopleBloc>(context).add(GetPopularPeopleEvent(_counter, "en-US"));
+            BlocProvider.of<PopularPeopleBloc>(context).add(GetPopularPeopleEvent(_counter, AppConstants.language));
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Squadio'),
                 actions: [
                   IconButton(onPressed: (){
-                    BlocProvider.of<PopularPeopleBloc>(context).add(GetPopularPeopleEvent(_counter, "en-US"));
+                    BlocProvider.of<PopularPeopleBloc>(context).add(GetPopularPeopleEvent(_counter, AppConstants.language));
                   },
-                      icon: Icon(Icons.refresh))
+                      icon: const Icon(Icons.refresh))
                 ],
               ),
               body: Container(
@@ -55,7 +56,7 @@ class _PopularPeopleListPageState extends State<PopularPeopleListPage> {
                       }else if(state is OnGetPopularPeopleError){
                         return Center(child: DisplayErrorWidget(message: state.message,),);
                       }else{
-                        return  Center(child: DisplayErrorWidget(message: 'State Error'),);
+                        return  const Center(child: DisplayErrorWidget(message: 'State Error'),);
                       }
                     },
 

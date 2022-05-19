@@ -9,41 +9,52 @@ import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/da
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/data/data_sources/popular_people_remote_data_source.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/popular_people_entity.dart';
 import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/repositories/popular_people_repository.dart';
-class PopularPeopleRepositoryImpl implements PopularPeopleRepository{
+class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
   final PopularPeopleLocalDataSource? peopleLocalDataSource;
   final PopularPeopleRemoteDataSource? popularPeopleRemoteDataSource;
   final NetworkInfo? platformNetworkInfo;
 
   PopularPeopleRepositoryImpl(
-      {@required this.peopleLocalDataSource,@required this.popularPeopleRemoteDataSource,@required this.platformNetworkInfo});
+      {@required this.peopleLocalDataSource, @required this.popularPeopleRemoteDataSource, @required this.platformNetworkInfo});
 
   @override
-  Future<Either<Failure, List<PopularPeopleEntity>>> getPopularPeopleFromLocalOrRemoteDataSource(int page, String language) async{
-    try{
+  Future<Either<Failure,
+      List<PopularPeopleEntity>>> getPopularPeopleFromLocalOrRemoteDataSource(
+      int page, String language) async {
+    try {
       bool isConnected = await platformNetworkInfo!.isConnected;
-      if(isConnected){
-        var popularPeopleList = await popularPeopleRemoteDataSource!.getAllPopularPeopleFromRemoteDataSource(page, language);
-        List<Insertable<PopularPeopleTableData>>  list = [];
+      if (isConnected) {
+        var popularPeopleList = await popularPeopleRemoteDataSource!
+            .getAllPopularPeopleFromRemoteDataSource(page, language);
+        List<Insertable<PopularPeopleTableData>> list = [];
 
-        for(var l in popularPeopleList){
-          var insertable = PopularPeopleTableData(id:l.id!
-              ,name: l.name,  popularity: l.popularity, profilePath: l.profilePath
-              , gender: l.gender, knownForDepartment: l.knownForDepartment, adult: l.adult, knownFor: l.knownFor
+        for (var l in popularPeopleList) {
+          var insertable = PopularPeopleTableData(id: l.id!
+              ,
+              name: l.name,
+              popularity: l.popularity,
+              profilePath: l.profilePath
+              ,
+              gender: l.gender,
+              knownForDepartment: l.knownForDepartment,
+              adult: l.adult,
+              knownFor: l.knownFor
           );
           list.add(insertable);
         }
         await peopleLocalDataSource!.deleteAllPopularPeople();
         await peopleLocalDataSource!.insetAllPopularPeople(list);
         return Right(popularPeopleList);
-      }else{
-        var popularPeopleList = await peopleLocalDataSource!.getAllPopularPeople();
+      } else {
+        var popularPeopleList = await peopleLocalDataSource!
+            .getAllPopularPeople();
         return Right(popularPeopleList);
       }
-    }on  ServerException catch (e){
+    } on ServerException catch (e) {
       return Left(ServerFailure(e.message!));
-    }on CacheException catch(e){
+    } on CacheException catch (e) {
       return Left(CacheFailure(e.message!));
-    }on CheckedFromJsonException catch(e){
+    } on CheckedFromJsonException catch (e) {
       return Left(CacheFailure(e.message!));
     }
   }

@@ -1,5 +1,5 @@
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/actor_profiles_entity.dart';
 import 'package:meta/meta.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/domain/entities/actor_profiles_entity.dart';
 
 class ActorProfilesModel extends ActorProfilesEntity {
 

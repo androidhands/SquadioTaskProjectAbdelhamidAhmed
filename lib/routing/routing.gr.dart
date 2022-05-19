@@ -13,10 +13,10 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
+import '../features/actor_details/presentation/pages/actor_details_page.dart'
+    as _i2;
 import '../features/popular_people/domain/entities/popular_people_entity.dart'
     as _i5;
-import '../features/popular_people/presentation/pages/popular_people_details_page.dart'
-    as _i2;
 import '../features/popular_people/presentation/pages/popular_people_page.dart'
     as _i1;
 
@@ -30,11 +30,11 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.PopularPeopleListPage());
     },
-    PopularPeopleDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<PopularPeopleDetailsRouteArgs>();
+    ActorDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ActorDetailsRouteArgs>();
       return _i3.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i2.PopularPeopleDetailsPage(
+          child: _i2.ActorDetailsPage(
               key: args.key, popularPeopleEntity: args.popularPeopleEntity));
     }
   };
@@ -42,8 +42,7 @@ class AppRouter extends _i3.RootStackRouter {
   @override
   List<_i3.RouteConfig> get routes => [
         _i3.RouteConfig(PopularPeopleListRoute.name, path: '/'),
-        _i3.RouteConfig(PopularPeopleDetailsRoute.name,
-            path: '/popular-people-details-page')
+        _i3.RouteConfig(ActorDetailsRoute.name, path: '/actor-details-page')
       ];
 }
 
@@ -57,22 +56,20 @@ class PopularPeopleListRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.PopularPeopleDetailsPage]
-class PopularPeopleDetailsRoute
-    extends _i3.PageRouteInfo<PopularPeopleDetailsRouteArgs> {
-  PopularPeopleDetailsRoute(
+/// [_i2.ActorDetailsPage]
+class ActorDetailsRoute extends _i3.PageRouteInfo<ActorDetailsRouteArgs> {
+  ActorDetailsRoute(
       {_i4.Key? key, required _i5.PopularPeopleEntity? popularPeopleEntity})
-      : super(PopularPeopleDetailsRoute.name,
-            path: '/popular-people-details-page',
-            args: PopularPeopleDetailsRouteArgs(
+      : super(ActorDetailsRoute.name,
+            path: '/actor-details-page',
+            args: ActorDetailsRouteArgs(
                 key: key, popularPeopleEntity: popularPeopleEntity));
 
-  static const String name = 'PopularPeopleDetailsRoute';
+  static const String name = 'ActorDetailsRoute';
 }
 
-class PopularPeopleDetailsRouteArgs {
-  const PopularPeopleDetailsRouteArgs(
-      {this.key, required this.popularPeopleEntity});
+class ActorDetailsRouteArgs {
+  const ActorDetailsRouteArgs({this.key, required this.popularPeopleEntity});
 
   final _i4.Key? key;
 
@@ -80,6 +77,6 @@ class PopularPeopleDetailsRouteArgs {
 
   @override
   String toString() {
-    return 'PopularPeopleDetailsRouteArgs{key: $key, popularPeopleEntity: $popularPeopleEntity}';
+    return 'ActorDetailsRouteArgs{key: $key, popularPeopleEntity: $popularPeopleEntity}';
   }
 }

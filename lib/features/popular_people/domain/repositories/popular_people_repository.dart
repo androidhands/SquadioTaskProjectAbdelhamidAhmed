@@ -4,4 +4,5 @@ import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/do
 
 abstract class PopularPeopleRepository{
   Future<Either<Failure,List<PopularPeopleEntity>>> getPopularPeopleFromLocalOrRemoteDataSource(int page,String language);
+
 }

@@ -1,5 +1,5 @@
-import 'package:squadio_task_project_abdelhamid_hamed/features/popular_people/domain/entities/known_for_entity.dart';
 import 'package:meta/meta.dart';
+import 'package:squadio_task_project_abdelhamid_hamed/features/actor_details/domain/entities/known_for_entity.dart';
 class KnownForModel extends KnownForEntity{
   const KnownForModel({
     @required int? id,
