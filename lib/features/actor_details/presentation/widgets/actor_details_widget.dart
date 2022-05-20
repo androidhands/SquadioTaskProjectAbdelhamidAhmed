@@ -27,9 +27,9 @@ class ActorDetailsWidget extends StatelessWidget{
          const SizedBox(height: 5,),
          SingleDetailItem(detailKey: 'Gender',detailValue: actorDetailsEntity!.gender==1?"Male":"Female",),
          const SizedBox(height: 5,),
-         SingleDetailItem(detailKey: 'Birthday',detailValue: actorDetailsEntity!.birthday,),
+         SingleDetailItem(detailKey: 'Birthday',detailValue: actorDetailsEntity!.birthday??"",),
          const SizedBox(height: 5,),
-         SingleDetailItem(detailKey: 'Place of Birth',detailValue: actorDetailsEntity!.placeOfBirth,),
+         SingleDetailItem(detailKey: 'Place of Birth',detailValue: actorDetailsEntity!.placeOfBirth??"",),
          const SizedBox(height: 5,),
          SingleDetailItem(detailKey: 'Biography',detailValue: actorDetailsEntity!.biography,),
 
