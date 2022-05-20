@@ -23,7 +23,7 @@ class ActorDetailsWidget extends StatelessWidget{
          const SizedBox(height: 5,),
          Text('Personal Info',style: GoogleFonts.reemKufi(fontSize: 18,color: Colors.white),),
          const SizedBox(height: 10,),
-         SingleDetailItem(detailKey: 'Known For',detailValue: actorDetailsEntity!.knownForDepartment,),
+         SingleDetailItem(detailKey: 'Known For',detailValue: actorDetailsEntity!.knownForDepartment??"",),
          const SizedBox(height: 5,),
          SingleDetailItem(detailKey: 'Gender',detailValue: actorDetailsEntity!.gender==1?"Male":"Female",),
          const SizedBox(height: 5,),
@@ -31,7 +31,7 @@ class ActorDetailsWidget extends StatelessWidget{
          const SizedBox(height: 5,),
          SingleDetailItem(detailKey: 'Place of Birth',detailValue: actorDetailsEntity!.placeOfBirth??"",),
          const SizedBox(height: 5,),
-         SingleDetailItem(detailKey: 'Biography',detailValue: actorDetailsEntity!.biography,),
+         SingleDetailItem(detailKey: 'Biography',detailValue: actorDetailsEntity!.biography??"",),
 
 
 
