@@ -6,7 +6,7 @@ class ServerResponse extends Equatable{
   final  int? totalPages;
   final  int? totalResults;
 
-  const ServerResponse(this.page, this.results, this.totalPages, this.totalResults);
+const ServerResponse(this.page, this.results, this.totalPages, this.totalResults);
 
   @override
   List<Object> get props => [page!,results,totalPages!,totalResults!];

@@ -10,6 +10,7 @@ class ServerFailure extends Failure{
   const ServerFailure(this.message);
   @override
   List<Object> get props => [message];
+
 }
 class CacheFailure extends Failure{
   final String message;
